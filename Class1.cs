@@ -35,6 +35,10 @@ namespace NASAMONKEY
         static bool noGrav = false;
         static void Postfix(GorillaLocomotion.Player __instance)
         {
+
+            }
+            if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
+            {
             List<InputDevice> list = new List<InputDevice>();
             InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
             list[0].TryGetFeatureValue(CommonUsages.gripButton, out noGrav);
@@ -46,10 +50,6 @@ namespace NASAMONKEY
             else
             {
                 __instance.bodyCollider.attachedRigidbody.useGravity = true;
-            }
-            if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
-            {
-
             }
         }
     }
